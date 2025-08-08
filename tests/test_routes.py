@@ -148,3 +148,35 @@ class TestAccountService(TestCase):
 
         resp_data = response.get_json()
         self.assertIn("was not found", resp_data["message"])
+
+    def test_update_accounts(self):
+        """ It Should Update an Existing Account and return 200 status code"""
+        # Create a Test account
+        test_account = AccountFactory()
+        logging.debug("Test account: %s", test_account.serialize())
+        response = self.client.post(BASE_URL, json=test_account.serialize())
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        # Update The test account
+        new_account = response.get_json()
+        new_account["name"] = "test case for update an account"
+        update_resp = self.client.put(f"{BASE_URL}/{new_account['id']}", json=new_account)
+        self.assertEqual(update_resp.status_code, status.HTTP_200_OK)
+        data = update_resp.get_json()
+        self.assertEqual(data["name"], "test case for update an account")
+
+    def test_update_account_not_found(self):
+        """It should not Updtae an account thats not found"""
+        # Create a non existed account
+        non_account = {
+            "id": 0,
+            "name": "name",
+            "email": "name@address.com",
+            "address": "street 5, town 2, country3",
+            "phone_number": "0625315232",
+            "date_joined": "08-08-2025"
+        }
+        response = self.client.put(f"{BASE_URL}/{non_account['id']}", json=non_account)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        data = response.get_json()
+        self.assertIn("was not found", data["message"])
