@@ -149,6 +149,7 @@ class TestAccountService(TestCase):
         resp_data = response.get_json()
         self.assertIn("was not found", resp_data["message"])
 
+    # Test Update an Account
     def test_update_accounts(self):
         """ It Should Update an Existing Account and return 200 status code"""
         # Create a Test account
@@ -180,3 +181,14 @@ class TestAccountService(TestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         data = response.get_json()
         self.assertIn("was not found", data["message"])
+
+    # Test Delete an Account
+    def test_delete_a_account(self):
+        """ It Should Dtelete An Existing account """
+        # Create account
+        account = self._create_accounts(1)[0]
+
+        # Delete the Test Account
+        delete_response = self.client.delete(f"{BASE_URL}/{account.id}")
+        self.assertEqual(delete_response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(len(delete_response.data), 0)
