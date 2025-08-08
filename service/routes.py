@@ -68,8 +68,19 @@ def create_accounts():
 # READ AN ACCOUNT
 ######################################################################
 
-# ... place you code here to READ an account ...
+@app.route("/accounts/<int:account_id>", methods=["GET"])
+def read_account(account_id):
+    """ Read an Account by ID
+        This Endpint will retrive an account info and return it with 200 status code
+    """
+    app.logger.info("Request to get an Account by ID")
+    account = Account.find(account_id)
 
+    if not account:
+        abort(status.HTTP_404_NOT_FOUND, f"The account with ID {account_id}, was not found")
+
+    app.logger.info(f"Returning Account: {account.name}")
+    return account.serialize(), status.HTTP_200_OK
 
 ######################################################################
 # UPDATE AN EXISTING ACCOUNT
