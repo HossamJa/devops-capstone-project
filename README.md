@@ -215,7 +215,7 @@ Configured the environment, cloned the repo, and developed the microservice usin
 **Update Demo**
 ![Update Demo](screenshots/rest-update-done.PNG)
 
-**Delete Demo**
+**Delete Demo** 
 ![Delete Demo](screenshots/rest-delete-done.PNG)
 
 ## Sprint 2: Continuous Integration and Security
@@ -228,7 +228,7 @@ Planned Sprint 2, added CI with GitHub Actions (triggered on push/PR, includes b
 **Sprint 2 Plan**
 ![Sprint 2 Plan](screenshots/sprint2-plan.PNG)
 
-**CI Workflow Run**
+**CI Workflow Run** 
 ![CI Workflow Run](screenshots/ci-workflow-done.PNG)
 
 **CI Badge in README**
@@ -237,7 +237,7 @@ Planned Sprint 2, added CI with GitHub Actions (triggered on push/PR, includes b
 **CI Kanban Done**
 ![CI Kanban Done](screenshots/ci-kanban-done.PNG)
 
-**Security Code**
+**Security Code** 
 ![Security Code](screenshots/security-code-done.PNG)
 
 **Security Headers Output**
@@ -254,7 +254,7 @@ Planned Sprint 3, containerized with Docker, manually deployed to OpenShift/Kube
 - Manual Deploy: Created PostgreSQL service, manifests, deployed image.
 - CD Pipeline: Tekton tasks for flake8, nosetests, buildah, openshift-client.
 
-**Sprint 3 Plan]**
+**Sprint 3 Plan**
 ![Sprint 3 Plan](screenshots/sprint3-plan.PNG)
 
 **App Output in Browse**
@@ -263,7 +263,7 @@ Planned Sprint 3, containerized with Docker, manually deployed to OpenShift/Kube
 **Docker Done on Kanban**
 ![Docker Done on Kanban](screenshots/kube-docker-done.PNG)
 
-**Docker Images**
+**Docker Images** 
 ![Docker Images](screenshots/kube-images.PNG)
 
 **Kubernetes Deployment**
