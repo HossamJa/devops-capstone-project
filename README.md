@@ -88,7 +88,7 @@ The code follows the Model-View-Controller (MVC) pattern:
 ├── requirements.txt<- Python dependencies
 ├── pipelinerun.txt <- Tekton pipeline run logs
 ├── README.md       <- This file
-└── screenshots/    <- Evidence screenshots (all .png format)
+└── screenshots/    <- Evidence screenshots (all .PNG format)
 ```
 
 Data Model (Account):
@@ -159,12 +159,12 @@ I started with Agile planning in GitHub, creating a repository, Kanban board, us
 - Added and sorted user stories for building the microservice.
 - Refined backlog and built sprint plans.
 
-![Planning Repository](screenshots/planning-repository-done.png)
-![User Story Template](screenshots/planning-storytemplate-done.png)
-![User Stories on Kanban](screenshots/planning-userstories-done.png)
-![Product Backlog](screenshots/planning-productbacklog-done.png)
-![Labels](screenshots/planning-labels-done.png)
-![Kanban Board](screenshots/planning-kanban-done.png)
+![Planning Repository](screenshots/planning-repository-done.PNG)
+![User Story Template](screenshots/planning-storytemplate-done.PNG)
+![User Stories on Kanban](screenshots/planning-userstories-done.PNG)
+![Product Backlog](screenshots/planning-productbacklog-done.PNG)
+![Labels](screenshots/planning-labels-done.PNG)
+![Kanban Board](screenshots/planning-kanban-done.PNG)
 
 ## Sprint 1: RESTful Service Development with TDD
 
@@ -173,17 +173,17 @@ Configured the environment, cloned the repo, and developed the microservice usin
 - Workflow: Branch per story, write failing tests, implement code, maintain coverage, PR to main.
 - Moved stories through Kanban: Backlog → In Progress → Done → Closed.
 
-![Setup.cfg](screenshots/rest-setupcfg-done.png)
-![Tech Debt on Kanban](screenshots/rest-techdebt-done.png)
-![List Accounts Done](screenshots/list-accounts.png)
-![Read Accounts Done](screenshots/read-accounts.png)
-![Update Accounts Done](screenshots/update-accounts.png)
-![Delete Accounts Done](screenshots/delete-accounts.png)
-![Create Demo](screenshots/rest-create-done.png)
-![List Demo](screenshots/rest-list-done.png)
-![Read Demo](screenshots/rest-read-done.png)
-![Update Demo](screenshots/rest-update-done.png)
-![Delete Demo](screenshots/rest-delete-done.png)
+![Setup.cfg](screenshots/rest-setupcfg-done.PNG)
+![Tech Debt on Kanban](screenshots/rest-techdebt-done.PNG)
+![List Accounts Done](screenshots/list-accounts.PNG)
+![Read Accounts Done](screenshots/read-accounts.PNG)
+![Update Accounts Done](screenshots/update-accounts.PNG)
+![Delete Accounts Done](screenshots/delete-accounts.PNG)
+![Create Demo](screenshots/rest-create-done.PNG)
+![List Demo](screenshots/rest-list-done.PNG)
+![Read Demo](screenshots/rest-read-done.PNG)
+![Update Demo](screenshots/rest-update-done.PNG)
+![Delete Demo](screenshots/rest-delete-done.PNG)
 
 ## Sprint 2: Continuous Integration and Security
 
@@ -192,13 +192,13 @@ Planned Sprint 2, added CI with GitHub Actions (triggered on push/PR, includes b
 - CI Workflow: Builds/tests on events, uses Flake8 and nosetests.
 - Security: Added headers and CORS, verified with tests.
 
-![Sprint 2 Plan](screenshots/sprint2-plan.png)
-![CI Workflow Run](screenshots/ci-workflow-done.png)
-![CI Badge in README](screenshots/ci-badge-done.png)
-![CI Kanban Done](screenshots/ci-kanban-done.png)
-![Security Code](screenshots/security-code-done.png)
-![Security Headers Output](screenshots/security-headers-done.png)
-![Security Kanban Done](screenshots/security-kanban-done.png)
+![Sprint 2 Plan](screenshots/sprint2-plan.PNG)
+![CI Workflow Run](screenshots/ci-workflow-done.PNG)
+![CI Badge in README](screenshots/ci-badge-done.PNG)
+![CI Kanban Done](screenshots/ci-kanban-done.PNG)
+![Security Code](screenshots/security-code-done.PNG)
+![Security Headers Output](screenshots/security-headers-done.PNG)
+![Security Kanban Done](screenshots/security-kanban-done.PNG)
 
 ## Sprint 3: Containerization, Deployment, and CD Pipeline
 
@@ -208,13 +208,13 @@ Planned Sprint 3, containerized with Docker, manually deployed to OpenShift/Kube
 - Manual Deploy: Created PostgreSQL service, manifests, deployed image.
 - CD Pipeline: Tekton tasks for flake8, nosetests, buildah, openshift-client.
 
-![Sprint 3 Plan](screenshots/sprint3-plan.png)
-![App Output in Browser](screenshots/kube-app-output.png)
-![Docker Done on Kanban](screenshots/kube-docker-done.png)
-![Docker Images](screenshots/kube-images.png)
-![Kubernetes Deployment](screenshots/kube-deploy-accounts.png)
-![Kubernetes Done on Kanban](screenshots/kube-kubernetes-done.png)
-![CD Pipeline Done](screenshots/cd-pipeline-done.png)
+![Sprint 3 Plan](screenshots/sprint3-plan.PNG)
+![App Output in Browser](screenshots/kube-app-output.PNG)
+![Docker Done on Kanban](screenshots/kube-docker-done.PNG)
+![Docker Images](screenshots/kube-images.PNG)
+![Kubernetes Deployment](screenshots/kube-deploy-accounts.PNG)
+![Kubernetes Done on Kanban](screenshots/kube-kubernetes-done.PNG)
+![CD Pipeline Done](screenshots/cd-pipeline-done.PNG)
 
 Pipeline logs available in [pipelinerun.txt](pipelinerun.txt).
 
