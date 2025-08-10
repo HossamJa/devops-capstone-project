@@ -1,135 +1,231 @@
-# DevOps Capstone Template
+# DevOps Capstone Project
 
 ![Build Status](https://github.com/HossamJa/devops-capstone-project/actions/workflows/ci-build.yaml/badge.svg)
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python 3.9](https://img.shields.io/badge/Python-3.9-green.svg)](https://shields.io/)
 
-This repository contains the starter code for the project in [**IBM-CD0285EN-SkillsNetwork DevOps Capstone Project**](https://www.coursera.org/learn/devops-capstone-project?specialization=devops-and-software-engineering) which is part of the [**IBM DevOps and Software Engineering Professional Certificate**](https://www.coursera.org/professional-certificates/devops-and-software-engineering)
+## Overview
+
+This repository contains the completed DevOps Capstone Project for the IBM DevOps and Software Engineering Professional Certificate. The project demonstrates hands-on application of DevOps principles, including Agile planning, Test-Driven Development (TDD), Continuous Integration (CI), security enhancements, containerization, Kubernetes deployment, and automated Continuous Delivery (CD) pipelines.
+
+In this capstone, I developed a secure microservices-based Customer Accounts application using Flask. The application manages customer data (create, read, update, delete, and list operations) and is deployed on a cloud-native environment. Over several sprints, I built an Agile plan, implemented the RESTful API, ensured high code coverage, automated CI/CD pipelines, and deployed to Kubernetes/OpenShift.
+
+Key accomplishments:
+- Created an Agile plan with user stories and a Kanban board using GitHub and ZenHub.
+- Developed the microservice using TDD, achieving 95%+ code coverage.
+- Implemented CI with GitHub Actions for automated builds, tests, linting, and coverage checks.
+- Added security features like HTTP security headers and CORS policies.
+- Containerized the app with Docker and deployed manually to Kubernetes/OpenShift.
+- Built an automated CD pipeline using Tekton for cloning, linting, testing, building, and deploying.
+- Completed peer review and submitted all required evidence.
+
+This project showcases my skills in full-stack DevOps, from planning to production deployment, making it ideal for demonstrating to employers.
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Project Goals](#project-goals)
+- [Technologies Used](#technologies-used)
+- [Project Structure](#project-structure)
+- [Setup and Installation](#setup-and-installation)
+- [Usage](#usage)
+- [Agile Planning (Sprint 0)](#agile-planning-sprint-0)
+- [Sprint 1: RESTful Service Development with TDD](#sprint-1-restful-service-development-with-tdd)
+- [Sprint 2: Continuous Integration and Security](#sprint-2-continuous-integration-and-security)
+- [Sprint 3: Containerization, Deployment, and CD Pipeline](#sprint-3-containerization-deployment-and-cd-pipeline)
+- [Evidence and Screenshots](#evidence-and-screenshots)
+- [License](#license)
+
+## Project Goals
+
+The goal was to build a Customer Accounts microservice that:
+- Handles CRUD+L (Create, Read, Update, Delete, List) operations for customer data.
+- Uses a PostgreSQL database.
+- Follows Agile methodologies for planning and execution.
+- Employs TDD for robust, tested code.
+- Integrates CI/CD for automation.
+- Ensures security and cloud-native deployment.
+
+The project was completed over multiple sprints, simulating a real-world DevOps team environment.
+
+## Technologies Used
+
+- **Programming Language**: Python 3.9
+- **Web Framework**: Flask
+- **Database**: PostgreSQL
+- **Testing**: Nose (nosetests), Coverage.py (95%+ coverage)
+- **Linting**: Flake8
+- **Security**: Flask-Talisman (security headers), Flask-CORS (CORS policies)
+- **CI/CD**: GitHub Actions (CI), Tekton (CD pipeline)
+- **Containerization**: Docker
+- **Orchestration**: Kubernetes/OpenShift
+- **Project Management**: GitHub (Repo, Kanban, Issues), ZenHub
+- **Other Tools**: Gunicorn (WSGI server), Buildah (image building), OpenShift Client
+
+## Project Structure
+
+The code follows the Model-View-Controller (MVC) pattern:
+
+```
+├── service         <- Microservice package
+│   ├── common/     <- Common log and error handlers
+│   ├── config.py   <- Flask configuration object
+│   ├── models.py   <- Database models and business logic
+│   └── routes.py   <- REST API routes
+├── tests           <- Unit and integration tests
+│   ├── factories.py            <- Test factories
+│   ├── test_cli_commands.py    <- CLI tests
+│   ├── test_models.py          <- Model unit tests
+│   └── test_routes.py          <- Route unit tests
+├── tekton          <- Tekton pipeline definitions
+│   ├── pipeline.yaml
+│   └── tasks.yaml
+├── .github/workflows/ci-build.yaml  <- GitHub Actions CI workflow
+├── Dockerfile      <- Docker image definition
+├── deployment.yaml <- Kubernetes manifests
+├── setup.cfg       <- Tools setup config
+├── requirements.txt<- Python dependencies
+├── pipelinerun.txt <- Tekton pipeline run logs
+├── README.md       <- This file
+└── screenshots/    <- Evidence screenshots (all .png format)
+```
+
+Data Model (Account):
+| Field        | Type       | Optional |
+|--------------|------------|----------|
+| id           | Integer    | False    |
+| name         | String(64) | False    |
+| email        | String(64) | False    |
+| address      | String(256)| False    |
+| phone_number | String(32) | True     |
+| date_joined  | Date       | False    |
+
+## Setup and Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/HossamJa/devops-capstone-project.git
+   cd devops-capstone-project
+   ```
+
+2. Set up the environment (source the setup script):
+   ```
+   source bin/setup.sh
+   ```
+
+3. Install dependencies:
+   ```
+   make install
+   ```
+
+4. Start PostgreSQL (via Docker):
+   ```
+   make db
+   ```
+
+5. Run the application locally:
+   ```
+   flask run
+   ```
+
+For Kubernetes/OpenShift deployment, see [Sprint 3](#sprint-3-containerization-deployment-and-cd-pipeline).
 
 ## Usage
 
-You should use this template to start your DevOps Capstone project. It contains all of the code that you will need to get started.
+- **Local Development**: Run `flask run` and access at `http://127.0.0.1:5000/accounts`.
+- **API Endpoints**:
+  - POST `/accounts`: Create an account.
+  - GET `/accounts`: List all accounts.
+  - GET `/accounts/<id>`: Read an account.
+  - PUT `/accounts/<id>`: Update an account.
+  - DELETE `/accounts/<id>`: Delete an account.
 
-Do Not fork this code! It is meant to be used by pressing the  <span style=color:white;background:green>**Use this Template**</span> button in GitHub. This will copy the code to your own repository with no connection back to the original repository like a fork would. This is what you want.
+Example CURL commands (from Sprint 1 demo):
+- Create: `curl -i -X POST http://127.0.0.1:5000/accounts -H "Content-Type: application/json" -d '{"name":"John Doe","email":"john@doe.com","address":"123 Main St.","phone_number":"555-1212"}'`
+- List: `curl -i -X GET http://127.0.0.1:5000/accounts`
+- Read: `curl -i -X GET http://127.0.0.1:5000/accounts/1`
+- Update: `curl -i -X PUT http://127.0.0.1:5000/accounts/1 -H "Content-Type: application/json" -d '{"name":"John Doe","email":"john@doe.com","address":"123 Main St.","phone_number":"555-1111"}'`
+- Delete: `curl -i -X DELETE http://127.0.0.1:5000/accounts/1`
 
-## Development Environment
+Run tests: `nosetests` (ensure 95% coverage with `coverage report`).
 
-These labs are designed to be executed in the IBM Developer Skills Network Cloud IDE with OpenShift. Please use the links provided in the Coursera Capstone project to access the lab environment.
+## Agile Planning (Sprint 0)
 
-Once you are in the lab environment, you can initialize it with `bin/setup.sh` by sourcing it. (*Note: DO NOT run this program as a bash script. It sets environment variable and so must be sourced*):
+I started with Agile planning in GitHub, creating a repository, Kanban board, user story template, and product backlog. User stories were prioritized, labeled, and estimated with story points. This formed the basis for all sprints.
 
-```bash
-source bin/setup.sh
-```
+- Created GitHub repo and Kanban board.
+- Developed user story template (`user-story.md`).
+- Added and sorted user stories for building the microservice.
+- Refined backlog and built sprint plans.
 
-This will install Python 3.9, make it the default, modify the bash prompt, create a Python virtual environment and activate it.
+![Planning Repository](screenshots/planning-repository-done.png)
+![User Story Template](screenshots/planning-storytemplate-done.png)
+![User Stories on Kanban](screenshots/planning-userstories-done.png)
+![Product Backlog](screenshots/planning-productbacklog-done.png)
+![Labels](screenshots/planning-labels-done.png)
+![Kanban Board](screenshots/planning-kanban-done.png)
 
-After sourcing it you prompt should look like this:
+## Sprint 1: RESTful Service Development with TDD
 
-```bash
-(venv) theia:project$
-```
+Configured the environment, cloned the repo, and developed the microservice using TDD. Implemented READ, UPDATE, DELETE, and LIST endpoints. Achieved 95% code coverage with nosetests and coverage tool. Demonstrated functionality in a sprint review using CURL.
 
-## Useful commands
+- Workflow: Branch per story, write failing tests, implement code, maintain coverage, PR to main.
+- Moved stories through Kanban: Backlog → In Progress → Done → Closed.
 
-Under normal circumstances you should not have to run these commands. They are performed automatically at setup but may be useful when things go wrong:
+![Setup.cfg](screenshots/rest-setupcfg-done.png)
+![Tech Debt on Kanban](screenshots/rest-techdebt-done.png)
+![List Accounts Done](screenshots/list-accounts.png)
+![Read Accounts Done](screenshots/read-accounts.png)
+![Update Accounts Done](screenshots/update-accounts.png)
+![Delete Accounts Done](screenshots/delete-accounts.png)
+![Create Demo](screenshots/rest-create-done.png)
+![List Demo](screenshots/rest-list-done.png)
+![Read Demo](screenshots/rest-read-done.png)
+![Update Demo](screenshots/rest-update-done.png)
+![Delete Demo](screenshots/rest-delete-done.png)
 
-### Activate the Python 3.9 virtual environment
+## Sprint 2: Continuous Integration and Security
 
-You can activate the Python 3.9 environment with:
+Planned Sprint 2, added CI with GitHub Actions (triggered on push/PR, includes build, test, lint, coverage). Added security: Flask-Talisman for headers, Flask-CORS for policies. Wrote TDD tests for security features.
 
-```bash
-source ~/venv/bin/activate
-```
+- CI Workflow: Builds/tests on events, uses Flake8 and nosetests.
+- Security: Added headers and CORS, verified with tests.
 
-### Installing Python dependencies
+![Sprint 2 Plan](screenshots/sprint2-plan.png)
+![CI Workflow Run](screenshots/ci-workflow-done.png)
+![CI Badge in README](screenshots/ci-badge-done.png)
+![CI Kanban Done](screenshots/ci-kanban-done.png)
+![Security Code](screenshots/security-code-done.png)
+![Security Headers Output](screenshots/security-headers-done.png)
+![Security Kanban Done](screenshots/security-kanban-done.png)
 
-These dependencies are installed as part of the setup process but should you need to install them again, first make sure that the Python 3.9 virtual environment is activated and then use the `make install` command:
+## Sprint 3: Containerization, Deployment, and CD Pipeline
 
-```bash
-make install
-```
+Planned Sprint 3, containerized with Docker, manually deployed to OpenShift/Kubernetes, then automated CD with Tekton pipeline (clone, lint, test, build, deploy).
 
-### Starting the Postgres Docker container
+- Dockerfile: Based on Python 3.9-slim, installs deps, uses Gunicorn, non-root.
+- Manual Deploy: Created PostgreSQL service, manifests, deployed image.
+- CD Pipeline: Tekton tasks for flake8, nosetests, buildah, openshift-client.
 
-The labs use Postgres running in a Docker container. If for some reason the service is not available you can start it with:
+![Sprint 3 Plan](screenshots/sprint3-plan.png)
+![App Output in Browser](screenshots/kube-app-output.png)
+![Docker Done on Kanban](screenshots/kube-docker-done.png)
+![Docker Images](screenshots/kube-images.png)
+![Kubernetes Deployment](screenshots/kube-deploy-accounts.png)
+![Kubernetes Done on Kanban](screenshots/kube-kubernetes-done.png)
+![CD Pipeline Done](screenshots/cd-pipeline-done.png)
 
-```bash
-make db
-```
+Pipeline logs available in [pipelinerun.txt](pipelinerun.txt).
 
-You can use the `docker ps` command to make sure that postgres is up and running.
+## Evidence and Screenshots
 
-## Project layout
+All evidence screenshots are in the `/screenshots` folder. URLs:
+- GitHub Repo: https://github.com/HossamJa/devops-capstone-project
+- Dockerfile: https://github.com/HossamJa/devops-capstone-project/blob/main/Dockerfile
 
-The code for the microservice is contained in the `service` package. All of the test are in the `tests` folder. The code follows the **Model-View-Controller** pattern with all of the database code and business logic in the model (`models.py`), and all of the RESTful routing on the controller (`routes.py`).
-
-```text
-├── service         <- microservice package
-│   ├── common/     <- common log and error handlers
-│   ├── config.py   <- Flask configuration object
-│   ├── models.py   <- code for the persistent model
-│   └── routes.py   <- code for the REST API routes
-├── setup.cfg       <- tools setup config
-└── tests                       <- folder for all of the tests
-    ├── factories.py            <- test factories
-    ├── test_cli_commands.py    <- CLI tests
-    ├── test_models.py          <- model unit tests
-    └── test_routes.py          <- route unit tests
-```
-
-## Data Model
-
-The Account model contains the following fields:
-
-| Name | Type | Optional |
-|------|------|----------|
-| id | Integer| False |
-| name | String(64) | False |
-| email | String(64) | False |
-| address | String(256) | False |
-| phone_number | String(32) | True |
-| date_joined | Date | False |
-
-## Your Task
-
-Complete this microservice by implementing REST API's for `READ`, `UPDATE`, `DELETE`, and `LIST` while maintaining **95%** code coverage. In true **Test Driven Development** fashion, first write tests for the code you "wish you had", and then write the code to make them pass.
-
-## Local Kubernetes Development
-
-This repo can also be used for local Kubernetes development. It is not advised that you run these commands in the Cloud IDE environment. The purpose of these commands are to simulate the Cloud IDE environment locally on your computer. 
-
-At a minimum, you will need [Docker Desktop](https://www.docker.com/products/docker-desktop) installed on your computer. For the full development environment, you will also need [Visual Studio Code](https://code.visualstudio.com) with the [Remote Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension from the Visual Studio Marketplace. All of these can be installed manually by clicking on the links above or you can use a package manager like **Homebrew** on Mac of **Chocolatey** on Windows.
-
-Please only use these commands for working stand-alone on your own computer with the VSCode Remote Container environment provided.
-
-1. Bring up a local K3D Kubernetes cluster
-
-    ```bash
-    $ make cluster
-    ```
-
-2. Install Tekton
-
-    ```bash
-    $ make tekton
-    ```
-
-3. Install the ClusterTasks that the Cloud IDE has
-
-    ```bash
-    $ make clustertasks
-    ```
-
-You can now perform Tekton development locally, just like in the Cloud IDE lab environment.
-
-## Author
-
-[John Rofrano](https://www.coursera.org/instructor/johnrofrano), Senior Technical Staff Member, DevOps Champion, @ IBM Research, and Instructor @ Coursera
+The project was submitted for peer review, including all screenshots and URLs as per the rubric.
 
 ## License
 
-Licensed under the Apache License. See [LICENSE](LICENSE)
-
-## <h3 align="center"> © IBM Corporation 2022. All rights reserved. <h3/>
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
