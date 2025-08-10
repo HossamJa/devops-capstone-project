@@ -159,12 +159,24 @@ I started with Agile planning in GitHub, creating a repository, Kanban board, us
 - Added and sorted user stories for building the microservice.
 - Refined backlog and built sprint plans.
 
+**Planning Repository**
 ![Planning Repository](screenshots/planning-repository-done.PNG)
+
+**User Story Template**
 ![User Story Template](screenshots/planning-storytemplate-done.PNG)
+
+**User Stories on Kanban**
 ![User Stories on Kanban](screenshots/planning-userstories-done.PNG)
+
+**Product Backlog**
 ![Product Backlog](screenshots/planning-productbacklog-done.PNG)
+
+**Labels**
 ![Labels](screenshots/planning-labels-done.PNG)
+
+**Kanban Board**
 ![Kanban Board](screenshots/planning-kanban-done.PNG)
+
 
 ## Sprint 1: RESTful Service Development with TDD
 
@@ -173,16 +185,37 @@ Configured the environment, cloned the repo, and developed the microservice usin
 - Workflow: Branch per story, write failing tests, implement code, maintain coverage, PR to main.
 - Moved stories through Kanban: Backlog → In Progress → Done → Closed.
 
+**Setup.cfg**
 ![Setup.cfg](screenshots/rest-setupcfg-done.PNG)
+
+**Tech Debt on Kanban**
 ![Tech Debt on Kanban](screenshots/rest-techdebt-done.PNG)
+
+**List Accounts Done**
 ![List Accounts Done](screenshots/list-accounts.PNG)
+
+**Read Accounts Done**
 ![Read Accounts Done](screenshots/read-accounts.PNG)
+
+**Update Accounts Done**
 ![Update Accounts Done](screenshots/update-accounts.PNG)
+
+**Delete Accounts Done**
 ![Delete Accounts Done](screenshots/delete-accounts.PNG)
+
+**Create Demo**
 ![Create Demo](screenshots/rest-create-done.PNG)
+
+**List Demo**
 ![List Demo](screenshots/rest-list-done.PNG)
+
+**Read Demo**
 ![Read Demo](screenshots/rest-read-done.PNG)
+
+**Update Demo**
 ![Update Demo](screenshots/rest-update-done.PNG)
+
+**Delete Demo**
 ![Delete Demo](screenshots/rest-delete-done.PNG)
 
 ## Sprint 2: Continuous Integration and Security
@@ -192,12 +225,25 @@ Planned Sprint 2, added CI with GitHub Actions (triggered on push/PR, includes b
 - CI Workflow: Builds/tests on events, uses Flake8 and nosetests.
 - Security: Added headers and CORS, verified with tests.
 
+**Sprint 2 Plan**
 ![Sprint 2 Plan](screenshots/sprint2-plan.PNG)
+
+**CI Workflow Run**
 ![CI Workflow Run](screenshots/ci-workflow-done.PNG)
+
+**CI Badge in README**
 ![CI Badge in README](screenshots/ci-badge-done.PNG)
+
+**CI Kanban Done**
 ![CI Kanban Done](screenshots/ci-kanban-done.PNG)
+
+**Security Code**
 ![Security Code](screenshots/security-code-done.PNG)
+
+**Security Headers Output**
 ![Security Headers Output](screenshots/security-headers-done.PNG)
+
+**Security Kanban Done**
 ![Security Kanban Done](screenshots/security-kanban-done.PNG)
 
 ## Sprint 3: Containerization, Deployment, and CD Pipeline
@@ -208,15 +254,28 @@ Planned Sprint 3, containerized with Docker, manually deployed to OpenShift/Kube
 - Manual Deploy: Created PostgreSQL service, manifests, deployed image.
 - CD Pipeline: Tekton tasks for flake8, nosetests, buildah, openshift-client.
 
+**Sprint 3 Plan]**
 ![Sprint 3 Plan](screenshots/sprint3-plan.PNG)
+
+**App Output in Browse**
 ![App Output in Browser](screenshots/kube-app-output.PNG)
+
+**Docker Done on Kanban**
 ![Docker Done on Kanban](screenshots/kube-docker-done.PNG)
+
+**Docker Images**
 ![Docker Images](screenshots/kube-images.PNG)
+
+**Kubernetes Deployment**
 ![Kubernetes Deployment](screenshots/kube-deploy-accounts.PNG)
+
+**Kubernetes Done on Kanban**
 ![Kubernetes Done on Kanban](screenshots/kube-kubernetes-done.PNG)
+
+**CD Pipeline Done**
 ![CD Pipeline Done](screenshots/cd-pipeline-done.PNG)
 
-Pipeline logs available in [pipelinerun.txt](pipelinerun.txt).
+**Pipeline logs available in** [pipelinerun.txt](pipelinerun.txt).
 
 ## Evidence and Screenshots
 
